@@ -1,4 +1,6 @@
 // src/pages/Mapa.jsx
+// CORRIGIDO: O link de detalhes no pino do mapa agora usa o prefixo /app.
+
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { MOCK_PESQUEIROS } from '../data/pesqueiros.js';
@@ -6,6 +8,8 @@ import { Link } from 'react-router-dom';
 import { Icon } from 'leaflet';
 
 // --- Correção de Ícone ---
+// O React Leaflet às vezes tem um bug onde o ícone do pino (marker) não aparece.
+// (Fonte: https://github.com/PaulLeCam/react-leaflet/issues/808)
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import markerShadowPng from "leaflet/dist/images/marker-shadow.png";
 
@@ -19,6 +23,7 @@ const customIcon = new Icon({
 });
 // --- Fim da Correção ---
 
+// Pega a localização do primeiro pesqueiro para centrar o mapa
 const defaultCenter = [MOCK_PESQUEIROS[0].lat, MOCK_PESQUEIROS[0].lng];
 
 export default function Mapa() {
@@ -26,7 +31,7 @@ export default function Mapa() {
   return (
     <MapContainer 
       center={defaultCenter} 
-      zoom={10}
+      zoom={10} 
       className="w-full h-full"
     >
       <TileLayer
@@ -44,8 +49,9 @@ export default function Mapa() {
             <div className="text-center">
               <h4 className="font-bold">{p.nome}</h4>
               <p>{p.cidade}</p>
+              {/* --- AQUI ESTÁ O CONSERTO: Adicionado o prefixo /app --- */}
               <Link 
-                to={`/pesqueiro/${p.id}`} 
+                to={`/app/pesqueiro/${p.id}`} 
                 className="text-blue-600 underline mt-2 inline-block"
               >
                 Ver detalhes

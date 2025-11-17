@@ -1,12 +1,12 @@
 // src/pages/PesqueiroDetalhe.jsx
-// ATUALIZADO: Adiciona seção de Avaliações (Reviews) com formulário.
+// CORRIGIDO: A sintaxe da URL do Google Maps foi ajustada.
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { MOCK_PESQUEIROS } from '../data/pesqueiros';
+import { MOCK_PESQUEIROS } from '../data/pesqueiros.js';
 import { ArrowLeft, Star, Clock, MapPin, Heart, Send } from 'lucide-react';
 
-// --- Componente para exibir uma Avaliação Individual ---
+// --- Componentes (ReviewCard e ReviewForm) não mudam ---
 const ReviewCard = ({ review }) => (
   <div className="bg-gray-50 p-4 border rounded-lg mb-3 shadow-sm">
     <div className="flex justify-between items-center mb-2">
@@ -26,7 +26,6 @@ const ReviewCard = ({ review }) => (
   </div>
 );
 
-// --- Componente de Formulário para Nova Avaliação (Simulada) ---
 const ReviewForm = ({ onReviewSubmit }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
@@ -35,9 +34,8 @@ const ReviewForm = ({ onReviewSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (rating > 0 && comment.trim() && userName.trim()) {
-      // Simula a submissão de um novo comentário
       const newReview = {
-        id: Date.now(), // ID único baseado no tempo
+        id: Date.now(),
         user: userName.trim(),
         rating: rating,
         comment: comment.trim(),
@@ -45,7 +43,6 @@ const ReviewForm = ({ onReviewSubmit }) => {
       
       onReviewSubmit(newReview);
       
-      // Limpa o formulário
       setRating(0);
       setComment('');
       setUserName('');
@@ -100,7 +97,7 @@ const ReviewForm = ({ onReviewSubmit }) => {
     </div>
   );
 };
-// --- FIM DOS NOVOS COMPONENTES ---
+// --- FIM DOS COMPONENTES ---
 
 
 export default function PesqueiroDetalhe() {
@@ -108,12 +105,10 @@ export default function PesqueiroDetalhe() {
   const navigate = useNavigate();
   const pesqueiro = MOCK_PESQUEIROS.find(p => p.id === parseInt(id));
   
-  // Estado para armazenar as reviews originais + as novas reviews submetidas
   const [currentReviews, setCurrentReviews] = useState(pesqueiro ? pesqueiro.reviews : []);
   
   useEffect(() => {
     if (pesqueiro) {
-        // Inicializa o estado com as reviews mockadas
         setCurrentReviews(pesqueiro.reviews);
     }
   }, [pesqueiro]);
@@ -130,9 +125,8 @@ export default function PesqueiroDetalhe() {
     );
   }
 
-  // Função para adicionar uma nova review ao estado (simulação)
   const handleReviewSubmit = (newReview) => {
-    setCurrentReviews([newReview, ...currentReviews]); // Adiciona a nova review no topo
+    setCurrentReviews([newReview, ...currentReviews]);
   };
 
   // Preço formatado
@@ -141,6 +135,11 @@ export default function PesqueiroDetalhe() {
     currency: 'BRL',
     minimumFractionDigits: 2,
   }).format(pesqueiro.preco);
+
+  // --- CÓDIGO CORRIGIDO AQUI ---
+  // A sintaxe correta para o link do Google Maps
+  const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${pesqueiro.lat},${pesqueiro.lng}`;
+  // --- FIM CÓDIGO CORRIGIDO ---
 
   return (
     <div className="flex flex-col h-full overflow-y-auto bg-white">
@@ -181,6 +180,19 @@ export default function PesqueiroDetalhe() {
           <p className="text-2xl font-extrabold text-emerald-700">{precoFormatado}</p>
         </div>
 
+        {/* --- O BOTÃO DE ROTA VOLTA AQUI --- */}
+        <a 
+          href={googleMapsUrl}
+          target="_blank" // Abre em uma nova aba (para não fechar o app)
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg mb-4 text-center hover:bg-blue-700 transition"
+        >
+          <MapPin size={20} className="mr-2" />
+          Como Chegar (Abrir Google Maps)
+        </a>
+        {/* --- FIM DO BOTÃO --- */}
+
+
         {/* Avaliação e Horário */}
         <div className="flex justify-between items-center mb-4 text-sm">
           <div className="flex items-center text-yellow-600">
@@ -210,7 +222,7 @@ export default function PesqueiroDetalhe() {
           ))}
         </div>
 
-        {/* --- NOVO: Seção de Avaliações --- */}
+        {/* Seção de Avaliações */}
         <h2 className="text-2xl font-bold text-gray-800 mb-4">Avaliações ({currentReviews.length})</h2>
 
         {/* Formulário de Review */}
