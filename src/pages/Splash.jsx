@@ -1,17 +1,23 @@
 // src/pages/Splash.jsx
+// CORRIGIDO: Caminho para auth.js agora é ../auth.js
+
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { isAuthenticated } from '../auth.js'; // <-- CAMINHO FINAL CORRETO
 
 export default function Splash() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Redireciona para a tela principal (/app) após 2 segundos
+    if (!isAuthenticated()) {
+        navigate('/');
+        return;
+    }
+    
     const timer = setTimeout(() => {
-      navigate('/app');
-    }, 2000); // 2000 milissegundos = 2 segundos
+      navigate('/app'); 
+    }, 2000); 
 
-    // Limpa o timer se o componente for desmontado
     return () => clearTimeout(timer);
   }, [navigate]);
 

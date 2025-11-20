@@ -1,38 +1,54 @@
 // src/App.jsx
-// Lógica de Rotas ATUALIZADA: Adicionada rota para a tela Splash.
+// ATUALIZADO: Adicionada rota para a página Registro
 
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { FavoritesProvider } from './context/FavoritesContext.jsx';
 import { Layout } from './components/Layout.jsx';
+import { isAuthenticated } from './auth.js'; 
 
 // Importe suas páginas
-import Splash from './pages/Splash.jsx'; // <-- NOVO IMPORT: A tela de Splash
+import Auth from './pages/Auth.jsx'; 
+import Splash from './pages/Splash.jsx'; 
 import Home from './pages/Home.jsx';
 import PesqueirosLista from './pages/PesqueirosLista.jsx';
 import PesqueiroDetalhe from './pages/PesqueiroDetalhe.jsx';
 import Favoritos from './pages/Favoritos.jsx';
 import Mapa from './pages/Mapa.jsx';
 import Perfil from './pages/Perfil.jsx';
+import Configuracoes from './pages/Configuracoes.jsx';
+import Registro from './pages/Registro.jsx'; // <-- NOVO IMPORT
 
-export default function App() { // <-- NOTE AQUI: O nome do componente é 'App'
+
+// Componente de Proteção de Rotas: Garante que o usuário esteja logado
+const ProtectedRoute = ({ children }) => {
+  if (!isAuthenticated()) {
+    return <Navigate to="/" replace />; 
+  }
+  return children;
+};
+
+
+export default function App() {
   return (
     <FavoritesProvider>
       <Router>
         <div className="max-w-md mx-auto h-screen bg-gray-50 flex flex-col shadow-lg">
           <Routes>
             
-            {/* Rota inicial agora é a tela Splash (sem o Layout) */}
-            <Route path="/" element={<Splash />} /> 
+            <Route path="/" element={<Auth />} /> 
+            <Route path="/splash" element={<Splash />} /> 
 
-            {/* As rotas do app AGORA estão aninhadas em /app */}
-            <Route path="/app" element={<Layout />}>
+            {/* Rotas Protegidas (Só acessa se estiver logado) */}
+            <Route path="/app" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
               <Route index element={<Home />} />
               <Route path="pesqueiros" element={<PesqueirosLista />} />
               <Route path="pesqueiro/:id" element={<PesqueiroDetalhe />} />
               <Route path="favoritos" element={<Favoritos />} />
               <Route path="mapa" element={<Mapa />} />
               <Route path="perfil" element={<Perfil />} />
+              <Route path="configuracoes" element={<Configuracoes />} />
+              <Route path="registro" element={<Registro />} /> {/* <-- NOVA ROTA */}
             </Route>
             
           </Routes>
