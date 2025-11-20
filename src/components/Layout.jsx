@@ -1,12 +1,12 @@
 // src/components/Layout.jsx
-// ATUALIZADO: Nova Navegação (4 abas + Menu Mais)
+// ATUALIZADO: Classes dark: adicionadas para funcionar o modo escuro na navegação.
 
-import React, { useState } from 'react'; // <-- NOVO: Adicionado useState
+import React, { useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { Search, Map, BookOpen, MoreVertical, LogOut } from 'lucide-react'; 
 import { Header } from './Header.jsx'; 
+import MoreMenu from './MoreMenu.jsx'; 
 import { logoutMock } from '../auth.js'; 
-import MoreMenu from './MoreMenu.jsx'; // <-- NOVO IMPORT
 
 // Componente de Navegação customizado 
 const NavButton = ({ to, children }) => {
@@ -20,7 +20,8 @@ const NavButton = ({ to, children }) => {
   return (
     <NavLink 
       to={to}
-      className={`flex-1 rounded-none flex flex-col h-16 justify-center items-center ${isActive ? 'text-blue-600' : 'text-emerald-700'}`}
+      // CLASSES DARK: Adicionamos a cor escura dos ícones e texto
+      className={`flex-1 rounded-none flex flex-col h-16 justify-center items-center ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-emerald-700 dark:text-emerald-500'}`}
     >
       {children}
     </NavLink>
@@ -28,20 +29,21 @@ const NavButton = ({ to, children }) => {
 }
 
 export function Layout() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // <-- NOVO: Estado para o menu Mais
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
       <Header /> 
       
-      <main className="flex-1 overflow-y-auto bg-white">
+      {/* CLASSES DARK: Fundo da página */}
+      <main className="flex-1 overflow-y-auto bg-white dark:bg-gray-800">
         <Outlet />
       </main>
       
-      <MoreMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} /> {/* <-- O MENU FLUTUANTE */}
+      <MoreMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} /> 
 
-      {/* Navegação de baixo (4 abas + Botão Mais) */}
-      <nav className="flex justify-around bg-white shadow-md border-t">
+      {/* CLASSES DARK: Fundo da navegação de baixo */}
+      <nav className="flex justify-around bg-white dark:bg-gray-900 shadow-md border-t dark:border-gray-700">
         <NavButton to="/app"><Search size={20}/> <span>Buscar</span></NavButton>
         <NavButton to="/app/mapa"><Map size={20}/> <span>Mapa</span></NavButton>
         <NavButton to="/app/registro"><BookOpen size={20}/> <span>Diário</span></NavButton> 
@@ -49,7 +51,7 @@ export function Layout() {
         {/* BOTÃO MAIS (3 PONTOS) */}
         <button 
             onClick={() => setIsMenuOpen(true)}
-            className={`flex-1 rounded-none flex flex-col h-16 justify-center items-center ${isMenuOpen ? 'text-blue-600' : 'text-emerald-700'}`}
+            className={`flex-1 rounded-none flex flex-col h-16 justify-center items-center ${isMenuOpen ? 'text-blue-600 dark:text-blue-400' : 'text-emerald-700 dark:text-emerald-500'}`}
         >
             <MoreVertical size={20}/> <span>Mais</span>
         </button>
