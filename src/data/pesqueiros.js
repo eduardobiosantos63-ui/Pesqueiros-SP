@@ -1,24 +1,22 @@
 // src/data/pesqueiros.js
-// VERSÃO FINAL: Caminho simplificado (sem /images/)
+// VERSÃO FINAL: Com 6 pesqueiros de referência e caminhos de imagem corrigidos.
 
 export const MOCK_PESQUEIROS = [
   {
     id: 1,
     nome: "Pesqueiro Sakura",
     cidade: "Embu-Guaçu - SP",
-    preco: 25, 
+    preco: 30, 
     horario: "Qua-Dom: 07:00-18:00", 
     aval: 4.6, 
     avalCount: 2020, 
     peixes: ["Tambaqui", "Patinga", "Tilápia", "Carpa", "Cachapira"],
     iscas_sugeridas: ["Anteninha", "Massa Branca", "Salsicha", "Ração", "Mafish (Coco)", "Manhoso"],
-    // --- CAMINHO SIMPLIFICADO ---
     galeria: [ 
-      "/foto1", // <-- REMOVEMOS O /images/
-      "/foto2.webp",
-      "/foto3.webp"
+      "/foto1.webp", 
+      "/foto2.webp", 
+      "/foto3.webp" 
     ],
-    // --- FIM GALERIA ---
     descricao: "O Pesqueiro Sakura é um espaço amplo, bem cuidado e ideal para lazer e pesca. Oferece dois grandes lagos (esportivo e tilápias), playground, quiosques e restaurante completo. A entrada de R$25 refere-se à pesca de tilápias, e R$30 para o lago esportivo. Local com ótimo custo-benefício.", 
     lat: -23.8376408, 
     lng: -46.7876175, 
@@ -34,7 +32,7 @@ export const MOCK_PESQUEIROS = [
     avalCount: 1143, 
     peixes: ["Tilápia", "Pacu", "Tambaqui", "Pintado"],
     iscas_sugeridas: ["Anteninha", "Milho Cozido", "Ração Furadinha", "Salsicha"], 
-    galeria: ["/foto2.webp"], // <-- SEM O /images/
+    galeria: ["/foto4.webp"], 
     descricao: "Av. Ernesto João Marcelino, 2177. Natureza abundante, parquinho para crianças e ótimo restaurante.",
     lat: -23.8143426, 
     lng: -46.8015003,
@@ -50,7 +48,7 @@ export const MOCK_PESQUEIROS = [
     avalCount: 419, 
     peixes: ["Traira", "Tambaqui", "Carpa", "Tilapia"],
     iscas_sugeridas: ["Anteninha", "Massa Japonesa", "Goiabada", "Pão"], 
-    galeria: ["/foto3.webp"], // <-- SEM O /images/
+    galeria: ["/foto5.webp"], 
     descricao: "R. Tia Zulmira, 200. Conhecido pelo ambiente tranquilo e boa pescaria esportiva.",
     lat: -23.8428039, 
     lng: -46.7896118,
@@ -66,7 +64,7 @@ export const MOCK_PESQUEIROS = [
     avalCount: 800, 
     peixes: ["Carpa Cabeçuda", "Pintado", "Tambaqui"],
     iscas_sugeridas: ["Massa de Fundo", "Ração com Essência", "Pão na Pinga"],
-    galeria: ["/foto4.webp"], 
+    galeria: ["/foto6.webp"], 
     descricao: "R. Yoshio Matsumura, 452. Um dos pesqueiros mais tradicionais de São Paulo.",
     lat: -23.8252091, 
     lng: -46.6723802,
@@ -82,7 +80,7 @@ export const MOCK_PESQUEIROS = [
     avalCount: 650, 
     peixes: ["Pacu", "Tambaqui", "Dourado"],
     iscas_sugeridas: ["Anteninha", "Ração na Pinga", "Salsicha Flutuante"],
-    galeria: ["/foto5.webp"], 
+    galeria: ["/foto7.webp"], 
     descricao: "Estr. do Enxadão, 800. Pesqueiro de alto padrão para pesca esportiva e lazer.",
     lat: -23.8817373, 
     lng: -47.0063387,
@@ -98,7 +96,7 @@ export const MOCK_PESQUEIROS = [
     avalCount: 150, 
     peixes: ["Tilápia", "Pacu", "Carpa", "Tambacu"],
     iscas_sugeridas: ["Anteninha", "Goiabada", "Salsicha", "Tripa de Frango"],
-    galeria: ["/foto6.webp"], 
+    galeria: ["/foto8.webp"], 
     descricao: "Estr. Luiz Mentone, 868. Um pesqueiro tradicional na região, ideal para quem busca um dia de paz e pesca.",
     lat: -23.8606095, 
     lng: -46.7792521,

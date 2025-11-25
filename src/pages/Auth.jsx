@@ -1,7 +1,7 @@
 // src/pages/Auth.jsx
-// CORRIGIDO: Lógica de redirecionamento imediato após Login/Cadastro
+// Final: Tela de Login/Cadastro com lógica simulada.
 
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginMock, isAuthenticated } from '../auth.js'; 
 import { User, Lock, LogIn } from 'lucide-react';
@@ -9,10 +9,10 @@ import { User, Lock, LogIn } from 'lucide-react';
 export default function Auth() {
     const navigate = useNavigate();
 
-    // --- CHECAGEM INICIAL: MANTÉM O REDIRECIONAMENTO AUTOMÁTICO SE JÁ ESTIVER LOGADO ---
+    // Redirecionamento automático se já estiver logado
     useEffect(() => {
         if (isAuthenticated()) {
-            navigate('/app', { replace: true }); 
+            navigate('/app', { replace: true });
         }
     }, [navigate]);
     
@@ -20,8 +20,6 @@ export default function Auth() {
     if (isAuthenticated()) {
         return <div className="flex items-center justify-center h-screen bg-gray-100"><p>Redirecionando...</p></div>;
     }
-    // --- FIM CHECAGEM ---
-
 
     const [isLogin, setIsLogin] = useState(true);
     const [username, setUsername] = useState('');
@@ -30,19 +28,15 @@ export default function Auth() {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        // Simulação de Login
         if (isLogin) {
             if (loginMock(username, password)) {
-                // CORREÇÃO: Navegamos diretamente, sem alert
                 navigate('/splash'); 
             } else {
                 alert("Erro: Para teste, qualquer valor funciona, mas os campos não podem estar vazios.");
             }
         } 
-        // Simulação de Cadastro
         else {
             if (loginMock(username, password)) {
-                // CORREÇÃO: Navegamos diretamente após o cadastro (simulado)
                 navigate('/splash'); 
             } else {
                 alert("Erro: Falha no cadastro (verifique os campos).");

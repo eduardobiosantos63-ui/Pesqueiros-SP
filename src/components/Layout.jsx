@@ -1,9 +1,8 @@
 // src/components/Layout.jsx
-// ATUALIZADO: Botão 'Buscar' mudado para 'Início' com ícone de casa.
+// Final: Navegação com 5 itens e botão Sair.
 
 import React, { useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
-// HOME ADICIONADO AQUI
 import { Search, Map, List, Heart, User, LogOut, BookOpen, Home, MoreVertical } from 'lucide-react'; 
 import { Header } from './Header.jsx'; 
 import MoreMenu from './MoreMenu.jsx'; 
@@ -29,7 +28,7 @@ const NavButton = ({ to, children }) => {
 }
 
 export function Layout() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
 
   return (
     <>
@@ -43,8 +42,7 @@ export function Layout() {
 
       {/* Navegação de baixo (4 abas + Menu Mais) */}
       <nav className="flex justify-around bg-white shadow-md border-t">
-        {/* MUDANÇA AQUI: Search -> Home e Buscar -> Início */}
-        <NavButton to="/app"><Home size={20}/> <span>Início</span></NavButton> 
+        <NavButton to="/app"><Home size={20}/> <span>Início</span></NavButton> {/* Início é a Home */}
         <NavButton to="/app/mapa"><Map size={20}/> <span>Mapa</span></NavButton>
         <NavButton to="/app/pesqueiros"><List size={20}/> <span>Pesqueiros</span></NavButton>
         <NavButton to="/app/registro"><BookOpen size={20}/> <span>Diário</span></NavButton> 
