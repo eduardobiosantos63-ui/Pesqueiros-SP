@@ -1,5 +1,5 @@
 // src/pages/PesqueiroDetalhe.jsx
-// ATUALIZADO: Usa pesqueiro.galeria[0] para a imagem principal.
+// Versão Final - Sintaxe Limpa
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { MOCK_PESQUEIROS } from '../data/pesqueiros.js';
 import { ArrowLeft, Star, Clock, MapPin, Heart, Send, Fish, Sun } from 'lucide-react';
 
 
-// --- Componentes (ReviewCard e ReviewForm) - Mantidos para brevidade ---
+// --- Componente: ReviewCard ---
 const ReviewCard = ({ review }) => (
   <div className="bg-gray-50 dark:bg-gray-700 p-4 border rounded-lg mb-3 shadow-sm dark:border-gray-600">
     <div className="flex justify-between items-center mb-2">
@@ -27,6 +27,7 @@ const ReviewCard = ({ review }) => (
   </div>
 );
 
+// --- Componente: ReviewForm ---
 const ReviewForm = ({ onReviewSubmit }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
@@ -127,7 +128,7 @@ export default function PesqueiroDetalhe() {
   if (!pesqueiro) {
     return (
       <div className="p-4">
-        <h2 className="text-2xl font-bold">Pesqueiro n├úo encontrado.</h2>
+        <h2 className="text-2xl font-bold">Pesqueiro não encontrado.</h2>
         <button onClick={() => navigate(-1)} className="mt-4 text-blue-600 flex items-center">
           <ArrowLeft size={20} className="mr-1" /> Voltar
         </button>
@@ -149,8 +150,7 @@ export default function PesqueiroDetalhe() {
       {/* Imagem e Botão Voltar */}
       <div className="relative w-full h-64 overflow-hidden">
         <img
-          // --- MUDANÇA AQUI: Usa o primeiro item da galeria ---
-          src={pesqueiro.galeria[0]} 
+          src={pesqueiro.galeria[0]}
           alt={pesqueiro.nome}
           className="w-full h-full object-cover"
         />
@@ -161,17 +161,17 @@ export default function PesqueiroDetalhe() {
           <ArrowLeft size={24} />
         </button>
         <button
-            // Favoritos (Apenas est├®tico por enquanto)
+            // Favoritos (Apenas estético por enquanto)
             className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-lg text-red-500 hover:scale-105 transition"
         >
             <Heart size={24} fill="currentColor"/>
         </button>
       </div>
 
-      {/* Conte├║do Principal */}
+      {/* Conteúdo Principal */}
       <div className="p-4 flex-1">
 
-        {/* T├¡tulo e Pre├ºo */}
+        {/* Título e Preço */}
         <div className="flex justify-between items-start mb-3 border-b pb-3 dark:border-gray-700">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 dark:text-white">{pesqueiro.nome}</h1>
@@ -196,12 +196,12 @@ export default function PesqueiroDetalhe() {
         {/* --- FIM BOTÃO DE ROTA --- */}
 
 
-        {/* Avalia├º├úo e Hor├írio */}
+        {/* Avaliação e Horário */}
         <div className="flex justify-between items-center mb-4 text-sm">
           <div className="flex items-center text-yellow-600">
             <Star size={18} fill="currentColor" className="mr-1"/>
             <span className="font-bold">{pesqueiro.aval}</span>
-            <span className="text-gray-500 dark:text-gray-400 ml-1">({pesqueiro.avalCount} aval.)</span>
+            <span className="text-gray-500 dark:text-gray-400 ml-1">({currentReviews.length} aval.)</span>
           </div>
           <div className="flex items-center text-gray-600 dark:text-gray-400">
             <Clock size={16} className="mr-1"/>

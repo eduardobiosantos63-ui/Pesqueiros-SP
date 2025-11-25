@@ -1,5 +1,5 @@
 // src/data/pesqueiros.js
-// VERSÃO FINAL-FINAL: Com nomes de arquivo simplificados e seguros.
+// VERSÃO FINAL: Caminho simplificado (sem /images/)
 
 export const MOCK_PESQUEIROS = [
   {
@@ -12,11 +12,11 @@ export const MOCK_PESQUEIROS = [
     avalCount: 2020, 
     peixes: ["Tambaqui", "Patinga", "Tilápia", "Carpa", "Cachapira"],
     iscas_sugeridas: ["Anteninha", "Massa Branca", "Salsicha", "Ração", "Mafish (Coco)", "Manhoso"],
-    // --- GALERIA COM NOMES SEGUROS ---
+    // --- CAMINHO SIMPLIFICADO ---
     galeria: [ 
-      "/sakura-lago1.webp", // <-- NOME SIMPLES E SEGURO
-      "/sakura-lago2.webp", 
-      "/sakura-tambaqui.webp" 
+      "/foto1", // <-- REMOVEMOS O /images/
+      "/foto2.webp",
+      "/foto3.webp"
     ],
     // --- FIM GALERIA ---
     descricao: "O Pesqueiro Sakura é um espaço amplo, bem cuidado e ideal para lazer e pesca. Oferece dois grandes lagos (esportivo e tilápias), playground, quiosques e restaurante completo. A entrada de R$25 refere-se à pesca de tilápias, e R$30 para o lago esportivo. Local com ótimo custo-benefício.", 
@@ -34,7 +34,7 @@ export const MOCK_PESQUEIROS = [
     avalCount: 1143, 
     peixes: ["Tilápia", "Pacu", "Tambaqui", "Pintado"],
     iscas_sugeridas: ["Anteninha", "Milho Cozido", "Ração Furadinha", "Salsicha"], 
-    galeria: ["/galego.webp"], 
+    galeria: ["/foto2.webp"], // <-- SEM O /images/
     descricao: "Av. Ernesto João Marcelino, 2177. Natureza abundante, parquinho para crianças e ótimo restaurante.",
     lat: -23.8143426, 
     lng: -46.8015003,
@@ -50,7 +50,7 @@ export const MOCK_PESQUEIROS = [
     avalCount: 419, 
     peixes: ["Traira", "Tambaqui", "Carpa", "Tilapia"],
     iscas_sugeridas: ["Anteninha", "Massa Japonesa", "Goiabada", "Pão"], 
-    galeria: ["/bonito.webp"], 
+    galeria: ["/foto3.webp"], // <-- SEM O /images/
     descricao: "R. Tia Zulmira, 200. Conhecido pelo ambiente tranquilo e boa pescaria esportiva.",
     lat: -23.8428039, 
     lng: -46.7896118,
@@ -66,7 +66,7 @@ export const MOCK_PESQUEIROS = [
     avalCount: 800, 
     peixes: ["Carpa Cabeçuda", "Pintado", "Tambaqui"],
     iscas_sugeridas: ["Massa de Fundo", "Ração com Essência", "Pão na Pinga"],
-    galeria: ["/matsumura.webp"], 
+    galeria: ["/foto4.webp"], 
     descricao: "R. Yoshio Matsumura, 452. Um dos pesqueiros mais tradicionais de São Paulo.",
     lat: -23.8252091, 
     lng: -46.6723802,
@@ -82,7 +82,7 @@ export const MOCK_PESQUEIROS = [
     avalCount: 650, 
     peixes: ["Pacu", "Tambaqui", "Dourado"],
     iscas_sugeridas: ["Anteninha", "Ração na Pinga", "Salsicha Flutuante"],
-    galeria: ["/campos.webp"], 
+    galeria: ["/foto5.webp"], 
     descricao: "Estr. do Enxadão, 800. Pesqueiro de alto padrão para pesca esportiva e lazer.",
     lat: -23.8817373, 
     lng: -47.0063387,
@@ -98,7 +98,7 @@ export const MOCK_PESQUEIROS = [
     avalCount: 150, 
     peixes: ["Tilápia", "Pacu", "Carpa", "Tambacu"],
     iscas_sugeridas: ["Anteninha", "Goiabada", "Salsicha", "Tripa de Frango"],
-    galeria: ["/fatima.webp"], 
+    galeria: ["/foto6.webp"], 
     descricao: "Estr. Luiz Mentone, 868. Um pesqueiro tradicional na região, ideal para quem busca um dia de paz e pesca.",
     lat: -23.8606095, 
     lng: -46.7792521,
